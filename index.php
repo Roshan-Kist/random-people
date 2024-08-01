@@ -1,3 +1,9 @@
+<?php
+$json = file_get_contents("./persons.json");
+$data = json_decode($json, true);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,13 +19,33 @@
   </script>
 </head>
 
-<body class="bg-dark">
-  <div class="container">
+<body class="">
+  <div class="container ">
     <div class="mt-4 mb-5 d-flex justify-content-between align-items-center">
-
       <h1 class="text-white">Random People Here! </h1>
-
     </div>
+
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Profile</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($data as $element) : ?>
+        <tr>
+
+          <td><img src="<?php echo $element["picture"]["medium"] ?>" /></td>
+          <td><?php echo $element["name"]["first"] ?></td>
+          <td><?php echo $element["gender"] ?></td>
+        </tr>
+        <?php endforeach; ?>
+
+      </tbody>
+    </table>
+
 
 
 
